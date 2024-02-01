@@ -1,3 +1,5 @@
+import RegisterForm from "./layout/RegisterForm";
+
 function App() {
   return (
     <div className="min-h-screen">
@@ -5,15 +7,8 @@ function App() {
         Hello world!
       </h1>
       <input type="checkbox" value="synthwave" className="toggle theme-controller"/>
-      <div className="flex gap-3 border justify-center py-3">
-        <button className="btn">Button</button>
-        <button className="btn btn-neutral">Neutral</button>
-        <button className="btn btn-primary">Primary</button>
-        <button className="btn btn-secondary">Secondary</button>
-        <button className="btn btn-accent">Accent</button>
-        <button className="btn btn-ghost">Ghost</button>
-        <button className="btn btn-link">Link</button>
-      </div>
+      <hr/>
+      <RegisterForm />
     </div>
   );
 }
