@@ -1,3 +1,4 @@
+import LoginForm from "./layout/LoginForm";
 import RegisterForm from "./layout/RegisterForm";
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
       </h1>
       <input type="checkbox" value="synthwave" className="toggle theme-controller"/>
       <hr/>
-      <RegisterForm />
+      {/* <RegisterForm /> */}
+      <LoginForm />
     </div>
   );
 }
