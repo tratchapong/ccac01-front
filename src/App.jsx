@@ -1,16 +1,18 @@
-import LoginForm from "./layout/LoginForm";
-import RegisterForm from "./layout/RegisterForm";
+import useAuth from "./hooks/useAuth";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
+  const {loading} = useAuth()
+
+  if(loading) {
+    return (
+      <p className="text-4xl text-primary">Loading..</p>
+    )
+  }
+
   return (
     <div className="min-h-screen">
-      <h1 className="text-4xl text-pink-600 text-center border bg-ghost-400 py-5 m-6 font-bold">
-        Hello world!
-      </h1>
-      <input type="checkbox" value="synthwave" className="toggle theme-controller"/>
-      <hr/>
-      {/* <RegisterForm /> */}
-      <LoginForm />
+      <AppRouter />
     </div>
   );
 }
