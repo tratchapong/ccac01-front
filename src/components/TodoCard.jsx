@@ -1,10 +1,11 @@
 import React from "react";
 
 export default function TodoCard(props) {
-  const {el} = props
+  const {el, openModal} = props
   return (
     <div className="card w-4/5 bg-pink-200 shadow-xl cursor-pointer 
       active:shadow-none active:translate-x-1 active:translate-y-1"
+      onClick={()=>openModal(el.id)}
     >
       <div className="card-body">
         <h2 className="card-title focus:text-red-300">{el.title}</h2>
