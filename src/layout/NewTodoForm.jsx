@@ -4,7 +4,7 @@ import {useState} from "react";
 export default function NewTodoForm() {
   const [input, setInput] = useState({
     title : '',
-    dueDate : new Date()
+    dueDate : new Date().toISOString().split('T')[0]
   })
 
   const hdlChange = e => {
@@ -47,7 +47,7 @@ export default function NewTodoForm() {
         <div className="label">
           <span className="label-text">Due Date</span>
         </div>
-        <input type="date" name="dueDate" value={input.value} onChange={hdlChange} />
+        <input type="date" name="dueDate" value={input.dueDate} onChange={hdlChange} />
       </label>
       <button className="btn btn-primary">Add new</button>
     </form>
