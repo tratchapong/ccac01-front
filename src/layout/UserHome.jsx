@@ -34,6 +34,7 @@ export default function UserHome() {
       { todos.map(el=> (
         <TodoCard key={el.id} el={el} 
           openModal={openModal} 
+          setTrigger={setTrigger}
         />
       ))}
     </div>
