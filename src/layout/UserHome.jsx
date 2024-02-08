@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 export default function UserHome() {
   const [todos, setTodos] = useState([]);
   const [editIdx, setEditIdx] = useState(-1)
+  const [trigger, setTrigger] = useState(false)
 
   useEffect(() => {
     const run = async () => {
@@ -16,7 +17,7 @@ export default function UserHome() {
       setTodos(rs.data.todos);
     };
     run();
-  }, []);
+  }, [trigger]);
 
   const openModal = (id) => {
     setEditIdx( todos.findIndex( el=> el.id === id))
@@ -36,7 +37,7 @@ export default function UserHome() {
         />
       ))}
     </div>
-    <Modal el={todos[editIdx]} closeModal={closeModal}/>
+    <Modal el={todos[editIdx]} closeModal={closeModal} setTrigger={setTrigger}/>
     </>
   );
 }

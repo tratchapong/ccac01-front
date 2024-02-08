@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function Modal(props) {
-  const { el, closeModal } = props;
+  const { el, closeModal, setTrigger } = props;
   const [input, setInput] = useState({
     title: "",
     dueDate: "",
@@ -13,7 +13,6 @@ export default function Modal(props) {
   useEffect( ()=>{
     if(status.length) { return }
     const run = async () => {
-      console.log('first')
       const token = localStorage.getItem('token')
       const rs = await axios.get('http://localhost:8889/todos/all-status', {
         headers: {Authorization : `Bearer ${token}`}
@@ -38,14 +37,13 @@ export default function Modal(props) {
   const hdlSubmit = async (e) => {
     try {
       e.preventDefault();
-      // setInput(prv => ({...prv, dueDate: new Date(prv.dueDate) }))
       const output = { ...input, dueDate: new Date(input.dueDate) };
       const token = localStorage.getItem("token");
       const rs = await axios.put(`http://localhost:8889/todos/${el.id}`, output, {
         headers : { Authorization : `Bearer ${token}`}
       })
-      alert('Update OK')
       console.log(rs)
+      setTrigger(prv => !prv)
     } catch (err) {
       alert(err.message);
     }
@@ -83,8 +81,11 @@ export default function Modal(props) {
               <option key={el} value={el}>{el}</option>
             ))}
           </select>
-          <button className="btn btn-info" onClick={closeModal}>
+          <button type='submit' className="btn btn-info" onClick={closeModal}>
             Submit
+          </button>
+          <button type='button' className="btn btn-info" onClick={closeModal}>
+            Cancel
           </button>
         </form>
       </div>
