@@ -4,6 +4,8 @@ import React from "react";
 export default function TodoCard(props) {
   const { el, openModal, setTrigger } = props;
 
+  const statusColor = el.status==='PENDING' ? 'bg-pink-300' 
+    : el.status==='DOING' ? 'bg-blue-300' : 'bg-lime-300'
   const hdlDelete = async e => {
     try {
       e.stopPropagation()
@@ -16,14 +18,12 @@ export default function TodoCard(props) {
     } catch (err) {
       console.log(err)
     }
-
-
   }
 
   return (
     <div
-      className="card w-5/6 bg-pink-300 shadow-xl mx-auto cursor-pointer
-      active:shadow-none active:translate-x-2 active:translate-y-1"
+      className={`card w-5/6 ${statusColor} shadow-xl mx-auto cursor-pointer
+      active:shadow-none active:translate-x-2 active:translate-y-1`}
       onClick={() => openModal(el.id)}
     >
       <div className="card-body">
