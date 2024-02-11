@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TodoCard from "../components/TodoCard";
-import Modal from "../components/Modal";
+import ModalEdit from "../components/ModalEdit";
 
 export default function UserHome() {
   const [todos, setTodos] = useState([]);
@@ -20,25 +20,24 @@ export default function UserHome() {
   }, [trigger]);
 
   const openModal = (id) => {
-    setEditIdx( todos.findIndex( el=> el.id === id))
-    document.getElementById('my_modal_2').showModal()
+    let idx = todos.findIndex( el=> el.id === id)
+    setEditIdx(idx)
+    document.getElementById("my_modal_2").showModal()
   }
 
   const closeModal = () => {
-    document.getElementById('my_modal_2').close()
+    document.getElementById("my_modal_2").close()
   }
+
   return (
-    <>
-    <div className="flex flex-col gap-3 items-center p-3">
-      <h2 className="text-3xl">Your Jobs</h2>
-      { todos.map(el=> (
-        <TodoCard key={el.id} el={el} 
-          openModal={openModal} 
-          setTrigger={setTrigger}
-        />
-      ))}
+    <div className="flex flex-col gap-4">
+      <div className="text-center text-2xl text-blue-500">Your jobs</div>
+      <ModalEdit el={todos[editIdx]} closeModal={closeModal} setTrigger={setTrigger}/>
+      <div className="flex flex-col gap-4">
+        {todos.map((el) => (
+          <TodoCard key={el.id} el={el} openModal={openModal} setTrigger={setTrigger}/>
+        ))}
+      </div>
     </div>
-    <Modal el={todos[editIdx]} closeModal={closeModal} setTrigger={setTrigger}/>
-    </>
   );
 }
